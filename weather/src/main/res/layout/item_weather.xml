@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingBottom="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="16dp">
+
+  <TextView
+      android:id="@+id/tvCityName"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="beijing"
+      android:textAppearance="?android:textAppearanceLarge"/>
+
+
+  <TextView
+      android:id="@+id/tvLastUpdate"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentRight="true"
+      android:paddingRight="16dp"
+      android:text="riqi"/>
+
+  <TextView
+      android:id="@+id/tvText"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/tvCityName"
+      android:text="duoyun"
+      android:textColor="@android:color/holo_red_light"
+      android:textSize="30sp"/>
+
+  <TextView
+      android:id="@+id/tvHigh"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentLeft="true"
+      android:layout_below="@id/tvText"
+      android:text="最高温度"
+      />
+
+  <TextView
+      android:id="@+id/tvLow"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentRight="true"
+      android:layout_below="@id/tvText"
+      android:text="最低温度"
+      />
+
+  <TextView
+      android:id="@+id/tvCop"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentLeft="true"
+      android:layout_below="@id/tvHigh"
+      android:text="降水概率"
+      />
+
+  <TextView
+      android:id="@+id/tvWind"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentRight="true"
+      android:layout_below="@id/tvLow"
+      android:text="风力风向"
+      />
+
+</RelativeLayout>

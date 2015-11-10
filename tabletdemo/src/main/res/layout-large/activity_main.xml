@@ -1,0 +1,22 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="horizontal"
+              android:baselineAligned="false"
+              tools:context=".MainActivity">
+
+  <fragment
+      android:id="@+id/left_fragment"
+      android:name="com.example.administrator.tabletdemo.MenuFragment"
+      android:layout_width="0dp"
+      android:layout_weight="1"
+      android:layout_height="match_parent"/>
+
+  <FrameLayout
+      android:id="@+id/details_layout"
+      android:layout_width="0dp"
+      android:layout_weight="4"
+      android:layout_height="match_parent"/>
+
+</LinearLayout>

@@ -1,0 +1,20 @@
+<resources>
+  <string name="app_name">AsyncHttpClient</string>
+
+  <string name="action_refresh">刷新</string>
+  <string name="btn_upload">上传</string>
+
+  <string name="choose_photo">选择相片</string>
+
+  <string name="hint_book_isbn">ISBN</string>
+  <string name="hint_book_title">Title</string>
+  <string name="hint_book_author">Author</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+  <string name="hello_blank_fragment">Hello blank fragment</string>
+  <string name="title_activity_upload_book">UploadBookActivity</string>
+
+  <string name="hello_world">Hello world!</string>
+  <string name="action_settings">Settings</string>
+
+</resources>
