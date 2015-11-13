@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="richOrPoor">
+    <item>简单点挺好</item>
+    <item>来次丰盛的</item>
+  </string-array>
+</resources>

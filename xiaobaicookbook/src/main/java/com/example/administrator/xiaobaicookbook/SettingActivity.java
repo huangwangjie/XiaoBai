@@ -1,80 +1,158 @@
 package com.example.administrator.xiaobaicookbook;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
-import android.util.SparseBooleanArray;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-import android.widget.TextView;
+import android.widget.ImageView;
+import android.widget.Switch;
 
 
-import com.example.administrator.xiaobaicookbook.util.CustomMultipleChoiceView;
 
-import butterknife.ButterKnife;
-import butterknife.InjectView;
-import butterknife.OnClick;
 
 
 public class SettingActivity extends Activity {
-    private PopupWindow stationSelectDialog;
+    private ImageView filte;
     private EditText diet;
-    //    private Spinner s_peopleCount;
-//    private Spinner s_favorite;
-//    private Spinner s_richOrPoor;
-//    @InjectView(R.id.diet)
-//    Button diet;
+    //private List<Icon> appList;
+    private String[] items;
+    private Switch swich1;
+    private Button OK;
+    private AlertDialog dialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
+        items=getResources().getStringArray(R.array.dietList);
+        swich1= (Switch) findViewById(R.id.switch1);
+        OK= (Button) findViewById(R.id.OK);
+        //init();
+        filte = (ImageView) findViewById(R.id.filte);
         diet = (EditText) findViewById(R.id.diet);
-    }
-
-    public void onClick(View v) {
-        showMutiChoiceDialog(new String[]{"没有忌口", "不吃牛肉", "不吃羊肉", "不吃狗肉",
-                "不吃鸭肉", "不吃鸡肉", "不吃海鲜", "不吃辣椒",
-                "不喜荤腥", "不吃鱼肉", "有孕妇", "有“三高”",
-                "不吃内脏", "不吃发物"}, diet);
-    }
-
-    private void showMutiChoiceDialog(final String[] stationsMean, final TextView textView) {
-        if(stationSelectDialog == null){
-            LayoutInflater inflater = LayoutInflater.from(this);
-            View view = inflater.inflate(R.layout.dialog_multiplechoice, null);
-            CustomMultipleChoiceView mutipleChoiceView = (CustomMultipleChoiceView) view.findViewById(R.id.CustomMultipleChoiceView);
-            mutipleChoiceView.setData(stationsMean, null);
-            mutipleChoiceView.selectAll();
-            mutipleChoiceView.setTitle("多选");
-            stationSelectDialog = new PopupWindow(view, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
-            mutipleChoiceView.setOnSelectedListener(new CustomMultipleChoiceView.onSelectedListener() {
-                @Override
-                public void onSelected(SparseBooleanArray sparseBooleanArray) {
-                    stationSelectDialog.dismiss();
-                    StringBuilder sb = new StringBuilder();
-                    for(int i=0; i<sparseBooleanArray.size(); i++){
-                        if(sparseBooleanArray.get(i)){
-                            sb.append(stationsMean[i] + ",");
+        filte.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialog();
+            }
+        });
+        OK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(swich1.isChecked()==false){
+                    showPrepareDialog();
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(2500);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            dialog.cancel();
+                            //来个if判断，如果只有一个人，跳转到今日推荐1
+                            //如果多于1人，跳转到今日推荐2
+                            startActivity(new Intent(SettingActivity.this, TodayMenuActivity.class));
+                            finish();
                         }
-                    }
-                    if(sb.length() > 0)
-                        sb.deleteCharAt(sb.length()-1);
-                    textView.setText(sb.toString());
-                }
-            });
-        }
-        stationSelectDialog.showAtLocation(getCurrentFocus(), Gravity.CENTER, 0, 0);
+                    }).start();
 
+
+                }else {
+                    startActivity(new Intent(SettingActivity.this,LoginActivity.class));
+                }
+            }
+        });
     }
 
+
+
+
+
+    private void showDialog() {
+        AlertDialog.Builder builder=new AlertDialog.Builder(SettingActivity.this);
+        builder.setTitle(R.string.diet1);
+        final boolean[] checkedItems = new boolean[items.length];
+
+        builder.setMultiChoiceItems(items, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                checkedItems[which] = isChecked;
+            }
+        });
+        builder.setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String text = "";
+                for (int i = 0; i < items.length; i++) {
+                    if (checkedItems[i]) {
+                        text += items[i] + ",";
+                    }
+                }
+                if (text.length() > 0) {
+                    text = text.substring(0, text.length() - 1);
+                }else {
+                    text=getResources().getString(R.string.everyThingIsOk);
+                }
+                diet.setText(text);
+            }
+        });
+        builder.setNegativeButton(R.string.button_cancel, null);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    void showPrepareDialog() {
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setTitle(R.string.preparing);
+        View view = getLayoutInflater().inflate(R.layout.preparing, null);
+        builder.setView(view);
+        builder.setPositiveButton(null, null);
+        builder.setNegativeButton(null, null);
+        dialog = builder.create();
+        dialog.show();
+    }
+//    private void init() {
+//        appList = new ArrayList<>();
+//        int label[] = new int[]{R.string.everyThingIsOk, R.string.noBeef,
+//                R.string.noPork, R.string.noSheep, R.string.noDog,
+//                R.string.noDuck, R.string.noChicken,
+//                R.string.noFish, R.string.noSeaFish,
+//                R.string.noMeat, R.string.noNeiZang,
+//                R.string.noHot, R.string.noFa,
+//                R.string.pregnant, R.string.threeHigh};
+//        List<Drawable> list = new ArrayList<>();
+//        list.add(getResources().getDrawable(R.drawable.bigmouth));
+//        list.add(getResources().getDrawable(R.drawable.cow));
+//        list.add(getResources().getDrawable(R.drawable.pork));
+//        list.add(getResources().getDrawable(R.drawable.sheep));
+//        list.add(getResources().getDrawable(R.drawable.dog));
+//        list.add(getResources().getDrawable(R.drawable.duck));
+//        list.add(getResources().getDrawable(R.drawable.chicken));
+//        list.add(getResources().getDrawable(R.drawable.fish));
+//        list.add(getResources().getDrawable(R.drawable.seafish));
+//        list.add(getResources().getDrawable(R.drawable.meat));
+//        list.add(getResources().getDrawable(R.drawable.neizang));
+//        list.add(getResources().getDrawable(R.drawable.lesshot));
+//        list.add(getResources().getDrawable(R.drawable.cock));
+//        list.add(getResources().getDrawable(R.drawable.pregnant));
+//        list.add(getResources().getDrawable(R.drawable.fat));
+//        Icon icon = null;
+//        for (int i = 0; i < label.length; i++) {
+//            icon = new Icon();
+//            icon.setLabel(getResources().getString(label[i]));
+//            icon.setIcon(list.get(i));
+//            icon.setCategory(i);
+//            appList.add(icon);
+//        }
+//    }
 
 
     @Override

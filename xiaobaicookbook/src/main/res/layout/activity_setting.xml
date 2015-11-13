@@ -1,0 +1,116 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:paddingBottom="@dimen/activity_vertical_margin"
+              android:paddingLeft="@dimen/activity_horizontal_margin"
+              android:paddingRight="@dimen/activity_horizontal_margin"
+              android:paddingTop="@dimen/activity_vertical_margin"
+              tools:context=".SettingActivity">
+
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/tellUs"
+      android:textAppearance="?android:textAppearanceLarge"/>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:paddingTop="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/people_count"
+        />
+
+    <Spinner
+        android:id="@+id/peopleCount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/peopleCount"/>
+  </LinearLayout>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/favorite"/>
+
+    <Spinner
+        android:id="@+id/favorite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/favourite"/>
+  </LinearLayout>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/diet"/>
+
+    <EditText
+        android:id="@+id/diet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:hint="@string/choose"
+        android:maxLines="3"/>
+
+    <ImageView
+        android:id="@+id/filte"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/filte"
+        android:onClick="onClick"/>
+
+
+  </LinearLayout>
+
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rich"/>
+
+    <Spinner
+        android:id="@+id/richOrPoor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/richOrPoor"/>
+  </LinearLayout>
+
+
+  <Switch
+      android:id="@+id/switch1"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:checked="false"
+      android:paddingTop="20dp"
+      android:text="@string/favoriteYes"/>
+
+  <Button
+      android:id="@+id/OK"
+      android:layout_width="200dp"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:layout_marginTop="20dp"
+      android:onClick="onButtonClick"
+      android:text="@string/button_ok"/>
+
+
+</LinearLayout>

@@ -1,0 +1,31 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context="com.example.administrator.xiaobaicookbook.fragment.NothingFragment">
+
+  <!-- TODO: Update blank fragment layout -->
+  <ImageView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:adjustViewBounds="true"
+      android:src="@drawable/what"/>
+
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/detail"
+      android:textAppearance="?android:textAppearanceLarge"
+      android:gravity="center"
+      android:paddingBottom="30dp"/>
+  <Button
+      android:id="@+id/suprise"
+      android:layout_width="120dp"
+      android:layout_height="wrap_content"
+      android:text="@string/suprise"
+      android:gravity="center"
+      android:onClick="onClick"
+      android:layout_gravity="center"/>
+
+</LinearLayout>

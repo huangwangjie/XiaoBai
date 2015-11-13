@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="favourite">
+    <item>没有特别偏好</item>
+    <item>喜欢吃酸的</item>
+    <item>喜欢吃甜的</item>
+    <item>喜欢吃苦的</item>
+    <item>喜欢吃辣的</item>
+    <item>喜欢吃咸的</item>
+    <item>喜欢吃臭的</item>
+  </string-array>
+</resources>
